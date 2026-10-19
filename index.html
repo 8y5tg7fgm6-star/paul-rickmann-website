@@ -3,197 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Die persönliche Website von Paul Rickmann, Stadtvertreter in Ueckermünde.">
-  <title>Paul Rickmann | Ueckermünde</title>
+  <meta name="description" content="Paul Rickmann – Stadtvertreter in Ueckermünde. Im Gespräch bleiben, gute Ideen entwickeln und unsere Stadt gemeinsam gestalten.">
+  <meta name="theme-color" content="#183a43">
+  <title>Paul Rickmann | Ueckermünde gemeinsam gestalten</title>
   <style>
     :root {
-      --dunkel: #183a43;
-      --hell: #f5f3ec;
-      --akzent: #c7a66a;
+      --petrol: #183a43;
+      --petrol-dark: #102b32;
+      --gold: #c7a66a;
+      --cream: #f7f5f0;
       --text: #263b3d;
+      --white: #fff;
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: #fff;
       line-height: 1.7;
     }
+    a { color: inherit; }
+    .container { width: min(1100px, 90%); margin: auto; }
 
     header {
-      background: var(--hell);
-      padding: 20px 7%;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: var(--white);
+      border-bottom: 1px solid rgba(255,255,255,.22);
+    }
+    .nav {
+      min-height: 78px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      align-items: center;
+      gap: 24px;
     }
-
-    .logo {
-      color: var(--dunkel);
-      font-size: 1.35rem;
-      font-weight: bold;
+    .brand {
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-decoration: none;
+      letter-spacing: .2px;
     }
-
-    nav { display: flex; gap: 20px; flex-wrap: wrap; }
-
+    nav { display: flex; gap: 25px; }
     nav a {
-      color: var(--dunkel);
+      color: white;
       text-decoration: none;
       font-size: .95rem;
     }
-
-    nav a:hover { text-decoration: underline; }
+    nav a:hover { color: var(--gold); }
 
     .hero {
-      background: var(--dunkel);
+      min-height: 690px;
+      display: flex;
+      align-items: center;
       color: white;
-      padding: 100px 8%;
-      text-align: center;
+      background:
+        linear-gradient(90deg, rgba(16,43,50,.90), rgba(16,43,50,.55) 58%, rgba(16,43,50,.2)),
+        linear-gradient(0deg, rgba(16,43,50,.3), transparent),
+        url("assets/ueckermuende-hafen.jpg") center 48% / cover no-repeat;
     }
-
-    .hero .ort {
-      color: var(--akzent);
-      letter-spacing: 3px;
-      font-size: .8rem;
-      font-weight: bold;
+    .hero-content {
+      max-width: 760px;
+      padding-top: 85px;
+      padding-bottom: 55px;
     }
-
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 700;
+      font-size: .82rem;
+    }
     h1 {
-      font-size: clamp(2.3rem, 6vw, 4.5rem);
-      line-height: 1.15;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.08;
       margin: 20px 0;
+      letter-spacing: -1.5px;
     }
-
     .hero p {
-      max-width: 650px;
-      margin: 0 auto 28px;
-      font-size: 1.1rem;
-      color: #e5eeee;
+      max-width: 620px;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,.92);
     }
-
     .button {
       display: inline-block;
-      background: var(--akzent);
-      color: #172f35;
-      padding: 12px 23px;
+      margin-top: 22px;
+      padding: 13px 23px;
+      border-radius: 4px;
+      background: var(--gold);
+      color: var(--petrol-dark);
       text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
+      font-weight: 700;
     }
+    .button:hover { background: #dfc58f; }
 
-    section {
-      padding: 65px 8%;
-      max-width: 1100px;
-      margin: auto;
+    section { padding: 85px 0; }
+    .section-label {
+      color: #8b6b35;
+      text-transform: uppercase;
+      font-size: .8rem;
+      letter-spacing: 2px;
+      font-weight: 700;
     }
-
-    h2 { color: var(--dunkel); font-size: 2rem; }
-
-    .karten {
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      color: var(--petrol);
+      margin: 12px 0 22px;
+    }
+    .intro {
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+    .about { background: var(--cream); }
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: .85fr 1.15fr;
+      align-items: center;
+      gap: 65px;
+    }
+    .portrait {
+      display: block;
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 5px;
+      box-shadow: 16px 16px 0 var(--gold);
+    }
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 22px;
-      margin-top: 28px;
+      margin-top: 35px;
     }
-
-    .karte {
-      background: var(--hell);
-      padding: 24px;
-      border-top: 4px solid var(--akzent);
-      border-radius: 4px;
+    .topic {
+      padding: 28px;
+      border: 1px solid #e2ded5;
+      border-top: 4px solid var(--gold);
+      background: white;
     }
-
-    .karte h3 { color: var(--dunkel); }
-
-    footer {
-      background: var(--dunkel);
+    .topic h3 { color: var(--petrol); margin-top: 0; }
+    .topic p { margin-bottom: 0; }
+    .contact {
+      background: var(--petrol);
       color: white;
-      padding: 28px 8%;
       text-align: center;
     }
-
+    .contact h2 { color: white; }
+    .contact p {
+      max-width: 650px;
+      margin: 0 auto;
+      color: rgba(255,255,255,.88);
+    }
+    .contact .button { margin-top: 28px; }
+    footer {
+      background: var(--petrol-dark);
+      color: rgba(255,255,255,.8);
+      padding: 24px 0;
+      font-size: .9rem;
+    }
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
     footer a { color: white; }
 
-    @media (max-width: 600px) {
-      header { padding: 20px 5%; }
-      nav { gap: 12px; }
-      .hero { padding: 75px 6%; }
-      section { padding: 45px 6%; }
+    @media (max-width: 720px) {
+      .nav { min-height: 70px; align-items: flex-start; padding: 20px 0; flex-direction: column; gap: 12px; }
+      nav { gap: 16px; flex-wrap: wrap; }
+      nav a { font-size: .88rem; }
+      .hero { min-height: 680px; background-position: 58% center; }
+      .hero-content { padding-top: 125px; }
+      section { padding: 60px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 35px; }
+      .portrait { max-width: 420px; max-height: 480px; }
+      .topics-grid { grid-template-columns: 1fr; }
+      footer .container { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Paul Rickmann</div>
-    <nav aria-label="Hauptnavigation">
-      <a href="#ueber-mich">Über mich</a>
-      <a href="#arbeit">Meine Arbeit</a>
-      <a href="#aktuelles">Aktuelles</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="#start">Paul Rickmann</a>
+      <nav aria-label="Hauptnavigation">
+        <a href="#ueber-mich">Über mich</a>
+        <a href="#themen">Meine Themen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <div class="hero">
-      <div class="ort">UECKERMÜNDE · MEINE HEIMAT</div>
-      <h1>Zuhören. Anpacken.<br>Ueckermünde gestalten.</h1>
-      <p>
-        Meine persönliche Website rund um meine kommunalpolitische
-        Arbeit, meine Themen und das Leben in unserer Stadt.
-      </p>
-      <a class="button" href="#arbeit">Meine Arbeit kennenlernen</a>
-    </div>
-
-    <section id="ueber-mich">
-      <h2>Moin, ich bin Paul.</h2>
-      <p>
-        Als Stadtvertreter in Ueckermünde möchte ich kommunalpolitische
-        Themen verständlich machen, Einblicke in meine Arbeit geben
-        und den Austausch mit den Bürgerinnen und Bürgern fördern.
-      </p>
-    </section>
-
-    <section id="arbeit">
-      <h2>Was mich antreibt</h2>
-      <div class="karten">
-        <article class="karte">
-          <h3>Eine moderne Verwaltung</h3>
-          <p>Digitale Angebote, verständliche Abläufe und guter Bürgerservice.</p>
-        </article>
-        <article class="karte">
-          <h3>Offene Kommunalpolitik</h3>
-          <p>Entscheidungen erklären und unterschiedliche Meinungen ernst nehmen.</p>
-        </article>
-        <article class="karte">
-          <h3>Ein lebenswertes Ueckermünde</h3>
-          <p>Unsere Stadt gemeinsam gestalten und das Engagement vor Ort stärken.</p>
-        </article>
+    <section class="hero" id="start">
+      <div class="container hero-content">
+        <div class="eyebrow">Für Ueckermünde</div>
+        <h1>Zuhören. Anpacken.<br>Unsere Stadt gestalten.</h1>
+        <p>
+          Ueckermünde ist unsere Heimat. Ich möchte mich dafür einsetzen,
+          dass gute Ideen gehört, Probleme offen angesprochen und Lösungen
+          gemeinsam entwickelt werden.
+        </p>
+        <a class="button" href="#ueber-mich">Lerne mich kennen</a>
       </div>
     </section>
 
-    <section id="aktuelles">
-      <h2>Aktuelles aus meiner Arbeit</h2>
-      <p>
-        Hier veröffentliche ich künftig Neuigkeiten, Berichte aus der
-        Stadtvertretung und Informationen zu kommunalpolitischen Themen.
-      </p>
+    <section class="about" id="ueber-mich">
+      <div class="container about-grid">
+        <div>
+          <img
+            class="portrait"
+            src="assets/paul-rickmann-portrait.jpg"
+            alt="Paul Rickmann"
+            loading="lazy"
+          >
+        </div>
+        <div>
+          <div class="section-label">Über mich</div>
+          <h2>Unsere Stadt lebt vom Mitmachen.</h2>
+          <p class="intro">
+            Ich bin Paul Rickmann und engagiere mich als Stadtvertreter
+            für Ueckermünde. Kommunalpolitik bedeutet für mich, zuzuhören,
+            unterschiedliche Perspektiven ernst zu nehmen und an konkreten
+            Verbesserungen für unsere Stadt zu arbeiten.
+          </p>
+          <p>
+            Mir ist wichtig, ansprechbar zu sein, Entscheidungen verständlich
+            zu erklären und gute Ideen nicht an Zuständigkeiten oder
+            eingefahrenen Abläufen scheitern zu lassen.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section id="kontakt">
-      <h2>Im Gespräch bleiben</h2>
-      <p>Du hast eine Frage oder eine Anregung zu Ueckermünde? Ich freue mich auf den Austausch.</p>
-      <p>Die Kontaktdaten ergänzen wir vor der Veröffentlichung.</p>
+    <section id="themen">
+      <div class="container">
+        <div class="section-label">Was mir wichtig ist</div>
+        <h2>Ueckermünde gemeinsam weiterentwickeln.</h2>
+        <p class="intro">
+          Eine gute Stadt entsteht, wenn wir Probleme offen ansprechen
+          und gemeinsam nach praktikablen Lösungen suchen.
+        </p>
+        <div class="topics-grid">
+          <article class="topic">
+            <h3>Eine Verwaltung, die hilft</h3>
+            <p>
+              Verständliche Informationen, digitale Angebote und
+              unkomplizierte Wege für Bürgerinnen und Bürger.
+            </p>
+          </article>
+          <article class="topic">
+            <h3>Gute Ideen möglich machen</h3>
+            <p>
+              Projekte konstruktiv begleiten, Chancen nutzen und
+              Verbesserungen für unsere Stadt voranbringen.
+            </p>
+          </article>
+          <article class="topic">
+            <h3>Miteinander vor Ort</h3>
+            <p>
+              Vereine, Ehrenamt und Menschen unterstützen, die sich
+              für Ueckermünde und seine Ortsteile engagieren.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="kontakt">
+      <div class="container">
+        <div class="section-label">Im Gespräch bleiben</div>
+        <h2>Was liegt dir am Herzen?</h2>
+        <p>
+          Du hast eine Idee, eine Frage oder möchtest ein Thema ansprechen?
+          Ich freue mich auf den Austausch mit dir.
+        </p>
+        <a class="button" href="mailto:kontakt@paul-rickmann.de">
+          Schreib mir eine E-Mail
+        </a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Paul Rickmann · Stadtvertreter in Ueckermünde</p>
-    <p>Persönliche Website · <a href="impressum.html">Impressum</a></p>
+    <div class="container">
+      <span>© <span id="year"></span> Paul Rickmann · Ueckermünde</span>
+      <span>Persönliche Website</span>
+    </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
